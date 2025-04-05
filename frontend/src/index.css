@@ -1,0 +1,25 @@
+
+*{
+    background-color: rgb(243, 112, 112);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+
+/*p tag should use only as much space as it containg the content or lines*/
+p{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    background-color: rgba(0,0,0,0);
+}
+
+h1,h2,h3,h4,h5,h6{
+    
+    background-color: rgba(0,0,0,0);
+}
+
+ 

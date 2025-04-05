@@ -1,12 +1,30 @@
 import { useState } from 'react';
+import   {Suspense, lazy} from 'react';
 import './App.css';
+ import LoadingLogo from '../components/LoadingLogo';
+import Navbar from '../components/navbar';
 
-function App() {
+
+
+const BugPage = lazy(() => new Promise(resolve => setTimeout(() => resolve(import("../components/BugPage.jsx")), 4000)));
+
+const HomePage = lazy(() => new Promise(resolve => setTimeout(() => resolve(import("../components/HomePage.jsx")), 0)));
+
+
+export default function App() {
   return (
-    <>
-      <h1>Put Shit Here</h1>
-    </>
+
+    <div>
+
+      <Suspense fallback={<LoadingLogo/>}>
+      
+      <HomePage />
+
+      </Suspense>
+
+
+    </div>
   )
 };
 
-export default App;
+

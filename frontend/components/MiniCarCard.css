@@ -1,0 +1,134 @@
+
+
+
+.miniCarCard{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: tomato;
+    width: 30%;
+    justify-content: flex-start;
+
+
+}
+
+.miniCarCard > div{
+    background-color: rgb(128, 34, 34);
+    align-self: flex-start;
+}
+
+.miniCarCard  p{
+    height: auto; 
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(165, 49, 49);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+/*-----------------*/
+
+
+.singleCarCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    background-color: white;
+    width: 17%;
+
+    gap: 0px; /*vertical gap between child divs; */
+}
+
+.singleCarCard > div{
+    background-color: white;
+}
+
+.singleCardImageContainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.singleCardImageContainer img{
+    width: 100%;
+    height: auto;
+}
+
+.carType{
+    position: absolute;
+    top:5%;
+    left: 5%;
+    right: 0px;
+    text-align: left;
+    font-size: 1.05rem;
+    padding: 10px 15px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    max-width: fit-content;
+    background-color: rgb(187, 184, 184);
+    border-radius:30px;
+}
+
+.carName{
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.carTransmission{
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(120, 120, 120);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    align-self:flex-start;
+    display: inline-block;
+
+
+}
+
+.carPrice{
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(120, 120, 120);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    max-width: fit-content;
+}
+
+
+.greyTextSmall{
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(73, 73, 73);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+.seaterRating{
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(120, 120, 120);
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+
+.seaterRating > pre{
+    background-color: #ffffff00;
+}
+
+.icons{
+    background-color: #ffffff00;
+    max-width: fit-content;
+}

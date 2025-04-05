@@ -1,0 +1,17 @@
+
+
+.allCardsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 3.7%;
+  padding: 0px; 
+
+  width: 100%;
+
+  border: solid 5px rgba(0, 255, 183, 0);
+
+  background-color: #00000000;
+
+} 
