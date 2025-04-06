@@ -3,14 +3,9 @@
 import "./Navbar.css";
 import { RiDashboard3Fill } from "react-icons/ri";
 import { FaUserLarge } from "react-icons/fa6";
+ 
 
-function NavbarRightSide()
-{
-
-}
-
-
-export default function Navbar() {
+export default function Navbar() { 
 
     return (
 

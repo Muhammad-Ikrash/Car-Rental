@@ -126,9 +126,11 @@
 
 .seaterRating > pre{
     background-color: #ffffff00;
+    vertical-align: middle;
 }
 
 .icons{
     background-color: #ffffff00;
     max-width: fit-content;
+    vertical-align: middle;
 }

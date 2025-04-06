@@ -12,10 +12,10 @@ export default function HomePage() {
 
     return (
         <div className="homepage">
-            <Navbar />
+            {/* <Navbar /> */}
             <Home />
             <Footer />
 
         </div>
     )
-}
+} 
