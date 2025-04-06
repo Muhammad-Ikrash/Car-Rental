@@ -156,7 +156,6 @@
     
   }
 
-
   .copyright {
     color: #ccc;
     font-size: 0.75rem;
@@ -166,8 +165,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bolder;
   }
-  
-  
+    
 .terms {
   display: flex;
   flex-wrap: wrap;
@@ -182,3 +180,60 @@
   text-decoration: none;
 }
 
+/* Instagram */
+.insta-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.insta-icon:hover {
+  color: #E1306C; /* Instagram's official color */
+}
+
+/* Twitter */
+.twitter-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.twitter-icon:hover {
+  color: #1DA1F2; /* Twitter's official color */
+}
+
+/* Facebook */
+.facebook-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.facebook-icon:hover {
+  color: #1877F2; /* Facebook's official color */
+}
+
+/* Discord */
+.discord-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.discord-icon:hover {
+  color: #7289DA; /* Discord's official color */
+}
+
+/* TikTok */
+.tiktok-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.tiktok-icon:hover {
+  color: #69C9D0; /* TikTok's official color */
+}
+
+.youtube-icon {
+  color: #fff; /* Default color */
+  transition: color 0.3s ease;
+}
+.youtube-icon:hover {
+  color: #FF0000; /* YouTube's official color */
+}

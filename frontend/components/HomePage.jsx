@@ -5,6 +5,7 @@
 import './HomePage.css';
 import Home from './Home';
 import Footer from './Footer';
+import ScrollTop from './ScrollTop';
 
 
 export default function HomePage() {
@@ -14,6 +15,7 @@ export default function HomePage() {
             {/* <Navbar /> */}
             <Home />
             <Footer />
+            <ScrollTop />
 
         </div>
     )
