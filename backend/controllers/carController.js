@@ -71,3 +71,11 @@ exports.UpdateCarInfo = async (req, res) => {
     res.status(204).json({ message: "Car info updated successfully!" });
 
 }
+
+exports.DeleteCar = async (req, res) => {
+
+    await Task.DeleteCar(req.params.carID);
+
+    res.status(204).json({ message: "Car deleted successfully!" });
+
+}

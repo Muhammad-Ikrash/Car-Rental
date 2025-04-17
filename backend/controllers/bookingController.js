@@ -80,3 +80,11 @@ exports.CancelBooking = async (req, res) => {
     res.status(204).json({ message: "Booking cancelled successfully!" });
 
 }
+
+exports.DeleteSchedule = async (req, res) => {
+
+    await Task.DeleteSchedule(req.params.bookingID);
+
+    res.status(204).json({ message: "Schedule deleted successfully!" });
+
+}

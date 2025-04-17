@@ -81,11 +81,20 @@ const Tasks = {
     async CancelBooking(scheduleID) {
         
         const pool = await poolPromise;
-        const result = await pool.request()
+        await pool.request()
             .input("schedule_id", sql.Int, scheduleID)
             .execute("sp_CancelBooking");
 
-    }
+    }, 
+
+    async DeleteSchedule(scheduleID) {
+
+        const pool = await poolPromise;
+        await pool.request()
+            .input("schedule_id", sql.Int, scheduleID)
+            .execute("sp_DeleteSchedule");
+
+    },
 
 };
 

@@ -57,6 +57,15 @@ const Tasks = {
             .input("end_date", sql.Date, endDate)
             .execute("sp_CreatePromotion");
 
+    }, 
+
+    async DeleteCompanyRequest(requestID) {
+
+        const pool = await poolPromise;
+        await pool.request()
+            .input("request_id", sql.Int, requestID)
+            .execute("sp_DeleteCompanyRequest");
+
     }
 
 };

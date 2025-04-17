@@ -126,6 +126,22 @@ const Tasks = {
             throw err;
         }
 
+    },
+
+    async DeleteCar(carID) {
+
+        try {
+
+            const pool = await poolPromise;
+            await pool.request()
+                .input("car_id", sql.Int, carID)
+                .execute("sp_DeleteCar");
+
+        } catch (err) {
+            console.error("Error deleting car: ", err);
+            throw err;
+        }
+
     }
 
 };

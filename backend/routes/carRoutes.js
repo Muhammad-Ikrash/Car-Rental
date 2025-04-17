@@ -6,6 +6,7 @@ const carController = require("../controllers/carController");
 const router = express.Router();
 
 router.get("/car/:carID", carController.GetCarDetails);
+router.delete("/car/:carID", carController.DeleteCar);
 router.post(
     "/car", 
     [

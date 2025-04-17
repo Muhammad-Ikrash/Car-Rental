@@ -59,6 +59,22 @@ const Tasks = {
             throw err;
         }
 
+    }, 
+
+    async DeleteUser(userID) {
+
+        try {
+
+            const pool = await poolPromise;
+            await pool.request()
+                .input("user_id", sql.Int, userID)
+                .execute("sp_DeleteUser");
+
+        } catch (err) {
+            console.error("Error deleting user: ", err);
+            throw err;
+        }
+
     }
 
 };

@@ -51,3 +51,11 @@ exports.UpdateUserStatus = async (req, res) => {
     res.status(204).json({ message: "User status updated successfully!" });
 
 }
+
+exports.DeleteUser = async (req, res) => {
+
+    await Task.DeleteUser(req.params.userID);
+
+    res.status(204).json({ message: "User deleted successfully!" });
+
+}

@@ -9,6 +9,7 @@ router.get("/company/:companyID", bookingController.GetBookingsByCompany);
 router.get("/drivers", bookingController.GetAvailableCarsAndDrivers);
 
 router.get("/booking/:bookingID", bookingController.GetBookingDetails);
+router.delete("/booking/:bookingID", bookingController.DeleteSchedule);
 router.post(
     "/booking",
     [], 

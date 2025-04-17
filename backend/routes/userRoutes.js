@@ -61,4 +61,6 @@ router.put(
     userController.UpdateUserStatus
 )
 
+router.delete("/delete/:userID", userController.DeleteUser);
+
 module.exports = router;

@@ -26,6 +26,7 @@ router.post(
     paymentController.AddMaintenanceRecord
 );
 
+router.delete("/request/:request_id", paymentController.DeleteCompanyRequest);
 router.post(
     "/request",
     [], 

@@ -68,3 +68,11 @@ exports.CreatePromotion = async (req, res) => {
     res.status(201).json({ message: "Promotion created successfully!" });
 
 }
+
+exports.DeleteCompanyRequest = async (req, res) => {
+
+    await Task.DeleteCompanyRequest(req.params.request_id);
+
+    res.status(204).json({ message: "Company request deleted successfully!" });
+
+}
