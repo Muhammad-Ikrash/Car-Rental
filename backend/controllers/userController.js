@@ -1,13 +1,19 @@
 const Task = require("../models/userModel");
 
-exports.RegisterUser = async (req, res) => {
+exports.GetAllUsers = async (req, res) => {
 
-    // validate shit
-    
-    const { username, password, email, role, statusID } = req.body;
-    await Task.RegisterUser(username, password, email, role, statusID);
+    try {
 
-    res.status(201).json({ message: "User registered successfully!" });
+        const users = await Task.GetAllUsers();
+
+        if (!users)
+            return res.status(404).json({ message: "No users found!" });
+
+        res.status(200).json(users);
+
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching users!" });
+    }
 
 }
 
@@ -26,19 +32,22 @@ exports.LoginUser = async (req, res) => {
 
 }
 
-exports.GetAllUsers = async (req, res) => {
+exports.RegisterUser = async (req, res) => {
 
-    try {
+    // validate shit
+    
+    const { username, password, email, role, statusID } = req.body;
+    await Task.RegisterUser(username, password, email, role, statusID);
 
-        const users = await Task.GetAllUsers();
+    res.status(201).json({ message: "User registered successfully!" });
 
-        if (!users)
-            return res.status(404).json({ message: "No users found!" });
+}
 
-        res.status(200).json(users);
+exports.UpdateUserStatus = async (req, res) => {
 
-    } catch (err) {
-        res.status(500).json({ message: "Error fetching users!" });
-    }
+    const { userID, statusID } = req.body;
+    await Task.UpdateUserStatus(userID, statusID);
+
+    res.status(204).json({ message: "User status updated successfully!" });
 
 }
