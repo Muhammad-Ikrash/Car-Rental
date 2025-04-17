@@ -75,8 +75,7 @@ exports.UpdateBookingStatus = async (req, res) => {
 
 exports.CancelBooking = async (req, res) => {
 
-    const { scheduleID } = req.body;
-    await Task.CancelBooking(scheduleID);
+    await Task.CancelBooking(req.params.scheduleID);
 
     res.status(204).json({ message: "Booking cancelled successfully!" });
 

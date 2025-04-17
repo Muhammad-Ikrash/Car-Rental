@@ -4,6 +4,9 @@ const cors = require("cors");
 
 const carRoutes = require("./routes/carRoutes");
 const userRoutes = require("./routes/userRoutes");
+const miscRoutes = require("./routes/miscRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 dotenv.config();
 const app = express();
@@ -13,6 +16,9 @@ app.use(cors());
 
 app.use("/api/cars", carRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/misc", miscRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/payments", paymentRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

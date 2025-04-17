@@ -6,9 +6,59 @@ const userController = require("../controllers/userController");
 const router = express.Router();
 
 router.get("/", userController.GetAllUsers);
-// router.get("")
-// router.post();
-// router.put();
-// router.delete();
+
+router.post(
+    "/login", 
+    [], 
+    (req, res, next) => {
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("Validation Errors: ", errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+
+    },
+    userController.LoginUser
+);
+
+router.post(
+    "/register", 
+    [], 
+    (req, res, next) => {
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("Validation Errors: ", errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+
+    },
+    userController.RegisterUser
+);
+
+router.put(
+    "/status", 
+    [], 
+    (req, res, next) => {
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("Validation Errors: ", errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+
+    },
+    userController.UpdateUserStatus
+)
 
 module.exports = router;
