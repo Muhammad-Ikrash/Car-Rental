@@ -40,7 +40,7 @@ router.post(
         next();
 
     }, 
-    paymentController.AddPayment
+    paymentController.RecordPayment
 );
 
 router.get("/outstanding/:companyID", paymentController.GetOutstandingTransactionsByCompany);

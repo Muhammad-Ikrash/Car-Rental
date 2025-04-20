@@ -1,4 +1,4 @@
-const { sql, poolPromise } = require("../db/dbConfig");
+const { sql, poolPromise } = require("../config/db");
 
 const Tasks = {
 
