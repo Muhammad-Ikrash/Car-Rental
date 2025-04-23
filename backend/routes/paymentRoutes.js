@@ -24,7 +24,7 @@ router.post(
     paymentController.AddTransaction
 );
 
-router.get("/payment/:paymentID", paymentController.GetPaymentsByTransaction);
+router.get("/payment/:transactionID", paymentController.GetPaymentsByTransaction);
 router.post(
     "/payment", 
     [], 

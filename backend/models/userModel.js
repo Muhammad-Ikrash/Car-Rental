@@ -51,7 +51,7 @@ const Tasks = {
             const pool = await poolPromise;
             await pool.request()
                 .input("user_id", sql.Int, userID)
-                .input("status_id", sql.TinyInt, statusID)
+                .input("new_status_id", sql.TinyInt, statusID)
                 .execute("sp_UpdateUserStatus");
 
         } catch (err) {

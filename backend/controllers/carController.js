@@ -47,8 +47,8 @@ exports.AddCar = async (req, res) => {
 
 exports.AddCarPartner = async (req, res) => {
 
-    const { partnerID, carID } = req.body;
-    await Task.AddCarPartner(partnerID, carID);
+    const { userID, company, contact, phone, address, contribution } = req.body;
+    await Task.AddCarPartner(userID, company, contact, phone, address, contribution);
 
     res.status(201).json({ message: "Car partner added successfully!" });
 

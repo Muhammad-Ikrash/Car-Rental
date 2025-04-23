@@ -52,7 +52,7 @@ const Tasks = {
         await pool.request()
             .input("promotion_code", sql.VarChar(50), promotionCode)
             .input("description", sql.Text, description)
-            .input("discount_percent", sql.Decimal(5, 2), discountPercent)
+            .input("discount_percentage", sql.Decimal(5, 2), discountPercent)
             .input("start_date", sql.Date, startDate)
             .input("end_date", sql.Date, endDate)
             .execute("sp_CreatePromotion");

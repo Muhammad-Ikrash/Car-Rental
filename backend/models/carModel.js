@@ -26,7 +26,7 @@ const Tasks = {
 
             const pool = await poolPromise;
             const result = await pool.request()
-                .input("partner_id", sql.Int, partnerID)
+                .input("car_partner_id", sql.Int, partnerID)
                 .execute("sp_GetCarsByPartner");
 
             return result.recordsets;
