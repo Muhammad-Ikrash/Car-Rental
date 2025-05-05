@@ -23,7 +23,7 @@ export default function Home()
                 Top Picks for You
             </div>
             <div className="topPicksObjective">
-                Experience the epitome of amazing journey with out top picks.
+                Experience the epitome of amazing journey with our top picks.
             </div>
             <AllCardsDiv />
             
