@@ -106,7 +106,7 @@ export default function AllCardsDiv() {
     return (
         <div className="allCardsDiv">
             {car.map((car, index) => (
-                <div 
+                <div className="card"
                     key={index} 
                     onClick={() => handleCardClick(car.id)} // Assuming each car object has an 'id' property
                     style={{ cursor: 'pointer' }} // Optional: to show it's clickable
@@ -118,3 +118,4 @@ export default function AllCardsDiv() {
     );
 }
 
+ 

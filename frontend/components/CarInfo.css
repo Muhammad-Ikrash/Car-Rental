@@ -128,7 +128,7 @@
 
 .rightInfo{
   width: 30%;
-  display: flex;
+  display: flex; 
   flex-direction: column;
   padding: 1%;
   padding-top: 0%;

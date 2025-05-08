@@ -1,6 +1,6 @@
 
 
-.allCardsDiv {
+.allCardsDiv  {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -15,3 +15,9 @@
   background-color: #00000000;
 
 } 
+/* AllCardsDiv.css */
+.card {
+  flex: 1 0 21%; /* Slightly larger than 20% to account for gap */
+  min-width: 0; /* Prevents flex items from overflowing */
+  box-sizing: border-box;
+}
