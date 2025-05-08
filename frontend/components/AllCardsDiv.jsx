@@ -1,12 +1,19 @@
 
 import MiniCarCard from "./MiniCarCard";
-
+import { useNavigate } from 'react-router-dom';
 import "./AllCardsDiv.css";
 
 
 export default function AllCardsDiv() {
 
+    const navigate = useNavigate();
+
+    const handleCardClick = (carid) => {
+        navigate(`/dashboard/${carid}`);
+    };
+
     const car1 = {
+        id :1002,
         name: "Nissan gtr Nismo",
         type: "Coupe",
         transmission: "Automatic/Manual",
@@ -18,6 +25,7 @@ export default function AllCardsDiv() {
 
 
     const car2 = {
+        id :1,
         name: "Honda Accord",
         type: "Sedan",
         transmission: "Manual",
@@ -27,7 +35,7 @@ export default function AllCardsDiv() {
     };
 
     const car3 = {
-
+        id :1,
         name: "Ford Explorer",
         type: "SUV",
         transmission: "Automatic",
@@ -36,6 +44,7 @@ export default function AllCardsDiv() {
         rating: 4.2,
     };
     const car4 = {
+        id :1,
         name: "Chevrolet Tahoe",
         type: "SUV",
         transmission: "Automatic/Manual",
@@ -45,6 +54,7 @@ export default function AllCardsDiv() {
     };
 
     const car5 = {
+        id :1,
         name: "Nissan Altima",
         type: "Sedan",
         transmission: "Automatic",
@@ -54,7 +64,7 @@ export default function AllCardsDiv() {
     };
 
     const car6 = {
-
+        id :1,
         name: "Hyundai Elantra",
         type: "Sedan",
         transmission: "Manual",
@@ -64,6 +74,7 @@ export default function AllCardsDiv() {
     };
 
     const car7 = {
+        id :1,
         name: "Kia Sorento",
         type: "SUV",
         transmission: "Automatic",
@@ -73,7 +84,7 @@ export default function AllCardsDiv() {
     };
 
     const car8 = {
-
+        id :1,
         name: "Mazda CX-5",
         type: "SUV",
         transmission: "Automatic",
@@ -84,12 +95,25 @@ export default function AllCardsDiv() {
     const car = [car1, car2, car3, car4, car5, car6, car7, car8];
 
 
+    // return (
+    //     <div className="allCardsDiv">
+    //         {car.map((car, index) => (
+    //             <MiniCarCard key={index} car={car} />
+    //         ))}
+
+    //     </div>
+    // );
     return (
         <div className="allCardsDiv">
             {car.map((car, index) => (
-                <MiniCarCard key={index} car={car} />
+                <div 
+                    key={index} 
+                    onClick={() => handleCardClick(car.id)} // Assuming each car object has an 'id' property
+                    style={{ cursor: 'pointer' }} // Optional: to show it's clickable
+                >
+                    <MiniCarCard car={car} />
+                </div>
             ))}
-
         </div>
     );
 }

@@ -282,16 +282,6 @@ export default function Filter(){
             </div>
 
             <div className="row3">
-                {/* <div className="seats">
-                    <div>
-                        Seats
-                    </div>
-                    <button>2</button>
-                    <button>5</button>
-                    <button>7</button>
-
-                </div> */}
-
                 <div className="seats">
                     <div className="label-and-buttons">
                         <span className="label">Seats</span>
