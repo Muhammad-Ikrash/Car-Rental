@@ -95,6 +95,9 @@ export default function AllCardsDiv() {
     const car = [car1, car2, car3, car4, car5, car6, car7, car8];
 
 
+    
+
+
     // return (
     //     <div className="allCardsDiv">
     //         {car.map((car, index) => (

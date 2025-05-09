@@ -63,3 +63,12 @@ p{
     text-align: left;
     font-family: "Varela Round", sans-serif;
 }
+
+.user-greeting {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-weight: bold;
+    z-index: 10;
+  }

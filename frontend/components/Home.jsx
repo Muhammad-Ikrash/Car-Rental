@@ -9,8 +9,21 @@ import Filter from "./Filter";
 export default function Home()
 {
 
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const userData = JSON.parse(sessionStorage.getItem('user'));
+        setUser(userData);
+    }, []);
+
     return (
         <div className="home">
+
+            {user && (
+            <div className="user-greeting">
+            Welcome, {user.username}!
+            </div>
+            )}
 
             <div className="homeImage">
                 <Navbar />
