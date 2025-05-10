@@ -74,7 +74,7 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
-        if (data.message === 'Login Successful') {
+        if (data.message === 'Login successful!') {
           sessionStorage.setItem('user', JSON.stringify(data.user));
           navigate('/');
         } else {
