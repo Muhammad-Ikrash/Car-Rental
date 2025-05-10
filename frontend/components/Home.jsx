@@ -5,6 +5,8 @@ import MiniCarCard from './MiniCarCard';
 import Navbar from "./navbar";
 import Filter from "./Filter";
 
+import { useState, useEffect } from 'react';
+
 
 export default function Home()
 {
@@ -19,12 +21,17 @@ export default function Home()
     return (
         <div className="home">
 
-            {user && (
+            {/* {user && (
             <div className="user-greeting">
             Welcome, {user.username}!
             </div>
-            )}
-
+            )} */}
+           
+            {/* {user && (
+            <div className="user-greeting">
+                Welcome, {user.username} ({user.role})
+            </div>
+            )} */}
             <div className="homeImage">
                 <Navbar />
                 <img src="./bmw2.jpg" alt="ss"></img>

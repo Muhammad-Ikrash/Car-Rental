@@ -14,7 +14,7 @@ export default function LoginSignup() {
   const navigate = useNavigate();
 
   // Check if user is already logged in
-  useEffect(() => {
+    useEffect(() => {
     const checkAuth = () => {
       const user = sessionStorage.getItem('user');
       if (user) {
@@ -23,15 +23,67 @@ export default function LoginSignup() {
     };
     
     // Fetch all usernames for signup validation
+    // const fetchUsernames = async () => {
+    //   try {
+    //     const response = await fetch('http://localhost:5000/api/users/');
+    //     const data = await response.json();
+    //     setAllUsernames(data.map(user => user.username));
+    //   } catch (err) {
+    //     console.error('Error fetching usernames:', err);
+    //   }
+    // };
+
     const fetchUsernames = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/users');
-        const data = await response.json();
-        setAllUsernames(data.map(user => user.username));
-      } catch (err) {
-        console.error('Error fetching usernames:', err);
-      }
-    };
+        try {
+          const response = await fetch('http://localhost:5000/api/users/', {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+      
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to fetch users');
+          }
+      
+          const data = await response.json();
+          
+          // Debug log to check response structure
+          console.log('API Response:', data);
+      
+          // Handle different response structures
+          let users = [];
+          if (Array.isArray(data)) {
+            if (data.length > 0 && Array.isArray(data[0])) {
+              users = data[0]; // Nested array case
+            } else {
+              users = data; // Flat array case
+            }
+          } else if (data.users) {
+            users = data.users; // Object with users property
+          }
+      
+          if (!Array.isArray(users)) {
+            throw new Error('Unexpected API response format');
+          }
+      
+          const usernames = users.map(user => {
+            if (!user || typeof user !== 'object') {
+              console.warn('Invalid user object:', user);
+              return '';
+            }
+            return user.username || '';
+          }).filter(username => username !== '');
+      
+          setAllUsernames(usernames);
+        } catch (err) {
+          console.error('Error fetching usernames:', err);
+          setError(err.message || 'Failed to load existing usernames');
+          setAllUsernames([]); // Fallback empty array
+        }
+      };
+
+    
 
     checkAuth();
     fetchUsernames();
@@ -53,7 +105,6 @@ export default function LoginSignup() {
     // At least 6 chars with one letter and one number
     return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -74,9 +125,16 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
-        if (data.message === 'Login Successful') {
-          sessionStorage.setItem('user', JSON.stringify(data.user));
-          navigate('/');
+        if (data.message === 'Login successful!') {
+          sessionStorage.setItem('user', JSON.stringify({
+            id: data.user.user_id,
+            username: data.user.username,
+            email: data.user.email,
+            role: data.user.role,
+            statusID: data.user.status_id
+          }));
+          onLogin(); // Call the onLogin callback
+          navigate('/', { replace: true });
         } else {
           setError(data.message || 'Login failed');
         }
@@ -85,21 +143,6 @@ export default function LoginSignup() {
       }
     } else {
       // Signup logic
-      if (!validateUsername(formData.username)) {
-        setError('Username must contain lowercase letters and at least one number');
-        return;
-      }
-
-      if (allUsernames.includes(formData.username)) {
-        setError('Username already exists');
-        return;
-      }
-
-      if (!validatePassword(formData.password)) {
-        setError('Password must be at least 6 characters with at least one letter and one number');
-        return;
-      }
-
       try {
         const response = await fetch('http://localhost:5000/api/users/register', {
           method: 'POST',
@@ -119,7 +162,8 @@ export default function LoginSignup() {
         
         if (data.success) {
           sessionStorage.setItem('user', JSON.stringify(data.user));
-          navigate('/');
+          onLogin(); // Call the onLogin callback
+          navigate('/', { replace: true });
         } else {
           setError(data.message || 'Registration failed');
         }

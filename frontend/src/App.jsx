@@ -61,11 +61,70 @@
 // }
 
 
+// import { useState, Suspense, lazy } from 'react';
+// import './App.css';
+// import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+// import LoadingLogo from '../components/LoadingLogo';
+// import Navbar from '../components/navbar';
+
+// const HomePage = lazy(() => import("../components/HomePage"));
+// const Dashboard = lazy(() => import("../components/Dashboard"));
+// const BugPage = lazy(() => import("../components/BugPage"));
+// const LoginSignup = lazy(() => import("../components/login"));
+
+// export default function App() {
+//   // const [isAuthenticated, setIsAuthenticated] = useState(
+//   //   !!sessionStorage.getItem('user')
+//   // );
+//   // Add this helper function at the top of App.jsx
+// const checkAuth = () => {
+//   const userData = sessionStorage.getItem('user');
+//   if (userData) {
+//     try {
+//       const user = JSON.parse(userData);
+//       return !!user.id; // Check if we have a valid user ID
+//     } catch {
+//       return false;
+//     }
+//   }
+//   return false;
+// };
+
+// // Update the state initialization
+// const [isAuthenticated, setIsAuthenticated] = useState(checkAuth());
+
+//   return (
+//     <div>
+//       <Router>
+//         <Suspense fallback={<LoadingLogo />}>
+//           <Routes>
+//             <Route 
+//               path="/" 
+//               element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} 
+//             />
+//             <Route path="/dashboard/:carid" element={<Dashboard />} />
+//             <Route path="/bugpage" element={<BugPage />} />
+//             <Route 
+//               path="/login" 
+//               element={
+//                 isAuthenticated ? (
+//                   <Navigate to="/" />
+//                 ) : (
+//                   <LoginSignup setIsAuthenticated={setIsAuthenticated} />
+//                 )
+//               } 
+//             />
+//           </Routes>
+//         </Suspense>
+//       </Router>
+//     </div>
+//   );
+// }
+
 import { useState, Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoadingLogo from '../components/LoadingLogo';
-import Navbar from '../components/navbar';
 
 const HomePage = lazy(() => import("../components/HomePage"));
 const Dashboard = lazy(() => import("../components/Dashboard"));
@@ -73,9 +132,10 @@ const BugPage = lazy(() => import("../components/BugPage"));
 const LoginSignup = lazy(() => import("../components/login"));
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!sessionStorage.getItem('user')
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const userData = sessionStorage.getItem('user');
+    return userData ? !!JSON.parse(userData).id : false;
+  });
 
   return (
     <div>
@@ -84,20 +144,23 @@ export default function App() {
           <Routes>
             <Route 
               path="/" 
-              element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} 
+              element={isAuthenticated ? <HomePage /> : <Navigate to="/login" replace />} 
             />
-            <Route path="/dashboard/:carid" element={<Dashboard />} />
-            <Route path="/bugpage" element={<BugPage />} />
+            <Route 
+              path="/dashboard/:carid" 
+              element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />} 
+            />
             <Route 
               path="/login" 
               element={
                 isAuthenticated ? (
-                  <Navigate to="/" />
+                  <Navigate to="/" replace />
                 ) : (
-                  <LoginSignup setIsAuthenticated={setIsAuthenticated} />
+                  <LoginSignup onLogin={() => setIsAuthenticated(true)} />
                 )
               } 
             />
+            <Route path="/bugpage" element={<BugPage />} />
           </Routes>
         </Suspense>
       </Router>
