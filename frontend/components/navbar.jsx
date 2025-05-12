@@ -65,47 +65,87 @@ export default function Navbar() {
     navigate("/profile");
   };
 
-  return (
-    <div className="navbar">
-      <div className="menu">
-        <div className="navbarLogo">
-          <img src="./logoSlim3.png" alt="logo"></img>
-        </div>
-        <div>Rentals</div>
-        <div>Dashboard</div>
-        <div>Active Bookings</div>
-        <div>History</div>
-      </div>
+  // return (
+  //   <div className="navbar">
+  //     <div className="menu">
+  //       <div className="navbarLogo">
+  //         <img src="./logoSlim3.png" alt="logo"></img>
+  //       </div>
+  //       <div>Rentals</div>
+  //       <div>Dashboard</div>
+  //       <div>Active Bookings</div>
+  //       <div>History</div>
+  //     </div>
 
-      <div className="search">
-        <input type="text" placeholder="Search your dreams..." />
-      </div>
+  //     <div className="search">
+  //       <input type="text" placeholder="Search your dreams..." />
+  //     </div>
 
-      {/* Login button always hidden */}
-      <div className="loginButton hid">
-        <button>Login</button>
-      </div>
+  //     {/* Login button always hidden */}
+  //     <div className="loginButton hid">
+  //       <button>Login</button>
+  //     </div>
 
-      {isLoggedIn ? (
-        <div className="userDropdown">
-          <button 
-            className="userIconButton"
-            onClick={() => setShowDropdown(!showDropdown)}
-          >
-            <FaUserLarge />
-          </button>
-          {showDropdown && (
-            <div className="dropdownMenu">
-              <button onClick={handleProfile}>Profile</button>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="signupButton">
-          <button onClick={() => navigate("/login")}>Sign Up</button>
-        </div>
-      )}
+  //     {isLoggedIn ? (
+  //       <div className="userDropdown">
+  //         <button 
+  //           className="userIconButton"
+  //           onClick={() => setShowDropdown(!showDropdown)}
+  //         >
+  //           <FaUserLarge />
+  //         </button>
+  //         {showDropdown && (
+  //           <div className="dropdownMenu">
+  //             <button onClick={handleProfile}>Profile</button>
+  //             <button onClick={handleLogout}>Logout</button>
+  //           </div>
+  //         )}
+  //       </div>
+  //     ) : (
+  //       <div className="signupButton">
+  //         <button onClick={() => navigate("/login")}>Sign Up</button>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+
+  // In navbar.jsx, update the return statement to:
+return (
+  <div className="navbar">
+    <div className="menu">
+      <div className="navbarLogo">
+        <img src="./logoSlim3.png" alt="logo"></img>
+      </div>
+      <div>Rentals</div>
+      <div>Dashboard</div>
+      <div>Active Bookings</div>
+      <div>History</div>
     </div>
-  );
+
+    <div className="search">
+      <input type="text" placeholder="Search your dreams..." />
+    </div>
+
+    {isLoggedIn ? (
+      <div className="userDropdown">
+        <button 
+          className="userIconButton"
+          onClick={() => setShowDropdown(!showDropdown)}
+        >
+          <FaUserLarge />
+        </button>
+        {showDropdown && (
+          <div className="dropdownMenu">
+            <button onClick={handleProfile}>Profile</button>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div className="signupButton">
+        <button onClick={() => navigate("/login")}>Sign Up</button>
+      </div>
+    )}
+  </div>
+);
 }

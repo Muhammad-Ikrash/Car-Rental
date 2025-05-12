@@ -21,17 +21,6 @@ export default function LoginSignup() {
         navigate('/');
       }
     };
-    
-    // Fetch all usernames for signup validation
-    // const fetchUsernames = async () => {
-    //   try {
-    //     const response = await fetch('http://localhost:5000/api/users/');
-    //     const data = await response.json();
-    //     setAllUsernames(data.map(user => user.username));
-    //   } catch (err) {
-    //     console.error('Error fetching usernames:', err);
-    //   }
-    // };
 
     const fetchUsernames = async () => {
         try {
@@ -125,10 +114,16 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
+        // if (data.message === 'Login Successful') {
+        //   sessionStorage.setItem('user', JSON.stringify(data.user));
+        //   navigate('/');
+        // } 
         if (data.message === 'Login Successful') {
-          sessionStorage.setItem('user', JSON.stringify(data.user));
-          navigate('/');
-        } else {
+        sessionStorage.setItem('user', JSON.stringify(data.user));
+        if (onLogin) onLogin(); // Call the onLogin callback
+        navigate('/', { replace: true });
+        }
+        else {
           setError(data.message || 'Login failed');
         }
       } catch (err) {
@@ -153,11 +148,17 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
+        // if (data.success) {
+        //   sessionStorage.setItem('user', JSON.stringify(data.user));
+        //   onLogin(); // Call the onLogin callback
+        //   navigate('/', { replace: true });
+        // } 
         if (data.success) {
-          sessionStorage.setItem('user', JSON.stringify(data.user));
-          onLogin(); // Call the onLogin callback
-          navigate('/', { replace: true });
-        } else {
+        sessionStorage.setItem('user', JSON.stringify(data.user));
+        if (onLogin) onLogin(); // Call the onLogin callback
+        navigate('/', { replace: true });
+        }
+        else {
           setError(data.message || 'Registration failed');
         }
       } catch (err) {
