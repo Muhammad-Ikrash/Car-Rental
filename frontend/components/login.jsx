@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
-export default function LoginSignup() {
+export default function LoginSignup({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     username: '',
@@ -125,8 +125,9 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
-        if (data.message === 'Login Successful') {
+        if (data.message === 'Login successful!') {
           sessionStorage.setItem('user', JSON.stringify(data.user));
+          onLogin();
           navigate('/');
         } else {
           setError(data.message || 'Login failed');
