@@ -125,6 +125,7 @@ import { useState, Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoadingLogo from '../components/LoadingLogo';
+import { useEffect } from 'react';
 
 const HomePage = lazy(() => import("../components/HomePage"));
 const Dashboard = lazy(() => import("../components/Dashboard"));

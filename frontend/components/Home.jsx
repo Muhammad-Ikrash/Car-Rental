@@ -4,7 +4,7 @@ import "./Home.css";
 import MiniCarCard from './MiniCarCard';
 import Navbar from "./navbar";
 import Filter from "./Filter";
-
+import { useState,useEffect } from "react";
 
 export default function Home()
 {
