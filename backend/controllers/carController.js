@@ -34,12 +34,31 @@ exports.GetCarsByPartner = async (req, res) => {
 
 }
 
+exports.FilterCars = async (req, res) => {
+
+    
+    try {
+        
+        const { brand, model, year, type, transmission, noOfSeats, minPrice, maxPrice } = req.body;
+        const task = await Task.FilterCars(brand, model, year, type, transmission, noOfSeats, minPrice, maxPrice);
+
+        if (!task)
+            return res.status(404).json({ message: "No cars found!" });
+
+        res.status(200).json(task);
+
+    } catch (err) {
+        res.status(500).json({ message: "Error filtering cars!" });
+    }
+
+}
+
 exports.AddCar = async (req, res) => {
 
     // validate shit
 
-    const { partnerID, category, model, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath } = req.body;
-    await Task.AddCar(partnerID, category, model, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath);
+    const { partnerID, category, model, brand, transmission, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath } = req.body;
+    await Task.AddCar(partnerID, category, model, brand, transmission, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath);
 
     res.status(201).json({ message: "Car added successfully!" });
 

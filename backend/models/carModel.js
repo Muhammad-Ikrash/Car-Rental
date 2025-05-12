@@ -38,7 +38,32 @@ const Tasks = {
 
     }, 
 
-    async AddCar(partnerID, category, model, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath) {
+    async FilterCars(brand, model, year, type, transmission, noOfSeats, minPrice, maxPrice) {
+
+        try {
+
+            const pool = await poolPromise;
+            const result = await pool.request()
+                .input("Brand", sql.NVarChar(50), brand)
+                .input("Model", sql.NVarChar(50), model)
+                .input("Year", sql.Int, year)
+                .input("Type", sql.NVarChar(50), type)
+                .input("Transmission", sql.NVarChar(20), transmission)
+                .input("NoOfSeats", sql.Int, noOfSeats)
+                .input("MinPrice", sql.Decimal(10, 2), minPrice)
+                .input("MaxPrice", sql.Decimal(10, 2), maxPrice)
+                .execute("sp_FilterCars");
+
+            return result.recordsets;
+
+        } catch (err) {
+            console.error("Error filtering cars: ", err);
+            throw err;
+        }
+
+    }, 
+
+    async AddCar(partnerID, category, model, brand, transmission, year, licensePlate, color, noOfSeats, fuelType, features, statusID, odometer, pricePerHour, imagePath) {
 
         try {
 
@@ -47,6 +72,8 @@ const Tasks = {
                 .input("car_partner_id", sql.Int, partnerID)
                 .input("category", sql.VarChar(20), category)
                 .input("model", sql.VarChar(50), model)
+                .input("brand", sql.VarChar(20), brand)
+                .input("transmission", sql.VarChar(10), transmission)
                 .input("year", sql.Int, year)
                 .input("license_plate", sql.VarChar(20), licensePlate)
                 .input("color", sql.VarChar(20), color)

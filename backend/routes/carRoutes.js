@@ -29,6 +29,24 @@ router.post(
     carController.AddCar
 );
 
+router.post(
+    "/filter", 
+    [], 
+    (req, res, next) => {
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            console.log("Validation Errors: ", errors.array());
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+
+    }, 
+    carController.FilterCars
+);
+
 router.get("/partner/:partnerID", carController.GetCarsByPartner);
 router.post(
     "/partner", 
