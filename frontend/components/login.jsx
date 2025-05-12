@@ -125,16 +125,9 @@ export default function LoginSignup() {
 
         const data = await response.json();
         
-        if (data.message === 'Login successful!') {
-          sessionStorage.setItem('user', JSON.stringify({
-            id: data.user.user_id,
-            username: data.user.username,
-            email: data.user.email,
-            role: data.user.role,
-            statusID: data.user.status_id
-          }));
-          onLogin(); // Call the onLogin callback
-          navigate('/', { replace: true });
+        if (data.message === 'Login Successful') {
+          sessionStorage.setItem('user', JSON.stringify(data.user));
+          navigate('/');
         } else {
           setError(data.message || 'Login failed');
         }

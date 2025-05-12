@@ -5,8 +5,6 @@ import MiniCarCard from './MiniCarCard';
 import Navbar from "./navbar";
 import Filter from "./Filter";
 
-import { useState, useEffect } from 'react';
-
 
 export default function Home()
 {
@@ -28,7 +26,7 @@ export default function Home()
             )} */}
            
             {/* {user && (
-            <div className="user-greeting">
+            <div className="user-greeting">  
                 Welcome, {user.username} ({user.role})
             </div>
             )} */}
