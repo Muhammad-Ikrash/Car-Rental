@@ -51,7 +51,7 @@ export default function Filter({ onFilter }) {
         Nissan: ['Altima', 'Maxima', 'Sentra', 'Versa', 'GT-R', '370Z', 
                  'Kicks', 'Rogue', 'Murano', 'Pathfinder', 'Armada', 
                  'Frontier', 'Titan', 'Leaf', 'Ariya'],
-        Ford: ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge', 
+        Ford: ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge',  
                'Bronco', 'Ranger', 'Expedition', 'Maverick', 'Focus', 
                'Fusion', 'EcoSport', 'Transit', 'GT', 'Thunderbird']
     };
