@@ -54,7 +54,7 @@ const Tasks = {
                 .input("MaxPrice", sql.Decimal(10, 2), maxPrice)
                 .execute("sp_FilterCars");
 
-            return result.recordsets;
+            return result.recordsets[0];
 
         } catch (err) {
             console.error("Error filtering cars: ", err);

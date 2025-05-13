@@ -130,18 +130,17 @@ export default function AllCardsDiv({ filterCriteria }) {
         const fetchCars = async () => {
             try {
                 setLoading(true);
-                let url = 'http://localhost:5000/api/cars';
                 
-                // If filter criteria exists, use the filter endpoint
-                if (filterCriteria) {
-                    url = 'http://localhost:5000/api/cars/filter';
-                    const response = await axios.post(url, filterCriteria);
-                    setCars(response.data);
-                } else {
-                    // Fetch all cars if no filter
-                    const response = await axios.get(url);
-                    setCars(response.data);
-                }
+                const response = await fetch('http://localhost:5000/api/cars/filter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(filterCriteria)
+                });
+
+                setCars(await response.json());
+
             } catch (error) {
                 console.error('Error fetching cars:', error);
             } finally {

@@ -46,7 +46,7 @@ import Filter from "./Filter";
 import { useState } from "react";
 
 export default function Home() {
-    const [filterCriteria, setFilterCriteria] = useState(null);
+    const [filterCriteria, setFilterCriteria] = useState({});
 
     const handleFilter = (criteria) => {
         setFilterCriteria(criteria);
