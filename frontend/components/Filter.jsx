@@ -1,284 +1,246 @@
-
 import React, { useState } from "react";
 import { RiResetLeftFill } from "react-icons/ri";
 import { FaArrowRightLong } from "react-icons/fa6";
 import "./Filter.css";
 
-export default function Filter(){
-    const brands = ['BMW', 'Mercedes', 'Audi', 'Toyota', 'Honda', 'Ford', 'Chevrolet', 'Nissan', 'Hyundai', 'Kia'];
-    const modelsBMW = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7'];
-    const modelsMercedes = ['A-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE', 'GLS'];
-    const modelsAudi = ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8'];
-    const modelsToyota = ['Corolla', 'Camry', 'RAV4', 'Highlander', 'Tacoma', 'Tundra'];
-    const modelsHonda = ['Civic', 'Accord', 'CR-V', 'Pilot', 'HR-V', 'Ridgeline'];
-    const modelsFord = ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge', 'Bronco'];
-    const modelsChevrolet = ['Silverado', 'Malibu', 'Equinox', 'Traverse', 'Tahoe', 'Suburban'];
-    const modelsNissan = ['Altima', 'Maxima', 'Rogue', 'Murano', 'Pathfinder', 'Armada'];
-    const modelsHyundai = ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisaide'];
-    const modelsKia = ['Forte', 'Optima', 'Sportage', 'Sorento', 'Telluride', 'Seltos'];
+
+//skibidi
+export default function Filter({ onFilter }) {
+    // Hardcoded brands (exactly as you requested)
+    const brands = ['BMW', 'Toyota', 'Suzuki', 'Honda', 'Lamborghini', 
+                   'Ferrari', 'Mercedes', 'Pagani', 'Bugatti', 'Kia', 
+                   'Mazda', 'Nissan', 'Ford'];
+
+    // Hardcoded models (15 for each brand as you requested)
     const models = {
-        BMW: modelsBMW,
-        Mercedes: modelsMercedes,
-        Audi: modelsAudi,
-        Toyota: modelsToyota,
-        Honda: modelsHonda,
-        Ford: modelsFord,
-        Chevrolet: modelsChevrolet,
-        Nissan: modelsNissan,
-        Hyundai: modelsHyundai,
-        Kia: modelsKia
+        BMW: ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', '2 Series', '3 Series', 
+              '4 Series', '5 Series', '7 Series', '8 Series', 'Z4', 'i8'],
+        Toyota: ['Corolla', 'Camry', 'RAV4', 'Highlander', 'Tacoma', 'Tundra', 
+                'Prius', 'Avalon', 'Sienna', '4Runner', 'Sequoia', 'C-HR', 
+                'Venza', 'Supra', 'GR86'],
+        Suzuki: ['Swift', 'Baleno', 'Dzire', 'Vitara', 'Jimny', 'Ciaz', 
+                'Ignis', 'S-Cross', 'Ertiga', 'XL6', 'Brezza', 'Alto', 
+                'Wagon R', 'S-Presso', 'Celerio'],
+        Honda: ['Civic', 'Accord', 'CR-V', 'Pilot', 'HR-V', 'Ridgeline', 
+                'Odyssey', 'Fit', 'Insight', 'Passport', 'Clarity', 'City', 
+                'BR-V', 'Amaze', 'Brio'],
+        Lamborghini: ['Aventador', 'Huracan', 'Urus', 'Sian', 'Countach', 
+                     'Diablo', 'Murcielago', 'Gallardo', 'Reventon', 'Veneno', 
+                     'Centenario', 'Terzo Millennio', 'Essenza SCV12', 
+                     'Huracan Sterrato', 'Revuelto'],
+        Ferrari: ['488', 'F8', 'Roma', 'Portofino', 'SF90', '296', 
+                 '812', 'LaFerrari', 'Enzo', 'F40', 'F50', 'Monza', 
+                 'Daytona SP3', 'Purosangue', 'Testarossa'],
+        Mercedes: ['A-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 
+                  'GLC', 'GLE', 'GLS', 'G-Class', 'CLA', 'CLS', 'AMG GT', 
+                  'SL', 'EQS', 'Maybach'],
+        Pagani: ['Huayra', 'Zonda', 'Utopia', 'Huayra R', 'Zonda R', 
+                'Huayra BC', 'Zonda Cinque', 'Huayra Roadster', 
+                'Zonda F', 'Huayra Tempesta', 'Zonda Revolucion', 
+                'Huayra Codalunga', 'Zonda HP Barchetta', 'Huayra Tricolore', 
+                'Zonda Fantasma'],
+        Bugatti: ['Chiron', 'Veyron', 'Divo', 'Centodieci', 'Bolide', 
+                 'La Voiture Noire', 'Chiron Super Sport', 'Veyron Super Sport', 
+                 'Chiron Pur Sport', 'EB110', 'Type 57', 'Veyron Grand Sport', 
+                 'Chiron Sport', 'Chiron Profilée', 'Mistral'],
+        Kia: ['Seltos', 'Soul', 'Forte', 'Rio', 'Optima', 'Stinger', 
+              'Carnival', 'Sorento', 'Telluride', 'Sportage', 'Niro', 
+              'EV6', 'K5', 'K900', 'Cadenza'],
+        Mazda: ['Mazda3', 'Mazda6', 'CX-3', 'CX-30', 'CX-5', 'CX-9', 
+                'MX-5 Miata', 'CX-50', 'CX-60', 'CX-70', 'CX-80', 
+                'CX-90', 'RX-7', 'RX-8', 'MX-30'],
+        Nissan: ['Altima', 'Maxima', 'Sentra', 'Versa', 'GT-R', '370Z', 
+                 'Kicks', 'Rogue', 'Murano', 'Pathfinder', 'Armada', 
+                 'Frontier', 'Titan', 'Leaf', 'Ariya'],
+        Ford: ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge', 
+               'Bronco', 'Ranger', 'Expedition', 'Maverick', 'Focus', 
+               'Fusion', 'EcoSport', 'Transit', 'GT', 'Thunderbird']
     };
+
+    // Other filter options
     const years = ['2020', '2021', '2022', '2023'];
     const types = ['SUV', 'Sedan', 'Truck', 'Van', 'Coupe', 'Convertible', 'Hatchback'];
-    const [selectedBrand, setSelectedBrand] = useState('');
-    const [selectedModel, setSelectedModel] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
-    const [selectedType, setSelectedType] = useState('');
-    const [filteredModels, setFilteredModels] = useState([]);
+    const seatOptions = [2, 4, 5, 7, 8];
 
-    const [driverOption, setDriverOption] = useState(null); // "with" | "without"
+    // State management
+    const [filters, setFilters] = useState({
+        brand: '',
+        model: '',
+        year: '',
+        type: '',
+        transmission: '',
+        seats: [],
+        minPrice: '',
+        maxPrice: '',
+        driverOption: ''
+    });
 
-    const handleDriverSelection = (option) => {
-        setDriverOption((prev) => (prev === option ? null : option));
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // Handler functions
+    const handleInputChange = (name, value) => {
+        setFilters(prev => ({
+            ...prev,
+            [name]: value,
+            ...(name === 'brand' && { model: '' }) // Reset model when brand changes
+        }));
     };
 
-    const [transmissionOption, setTransmissionOption] = useState(null);
-
-    const handleTransmissionSelection = (option) => {
-    setTransmissionOption(prev => (prev === option ? null : option));
+    const handleSeatToggle = (seat) => {
+        setFilters(prev => ({
+            ...prev,
+            seats: prev.seats.includes(seat)
+                ? prev.seats.filter(s => s !== seat)
+                : [...prev.seats, seat]
+        }));
     };
 
-    const [selectedSeats, setSelectedSeats] = useState([]);
-    const seatOptions = [2, 5, 7];
+    const handleFilterSubmit = async () => {
+        setError(null);
+        setIsLoading(true);
+        
+        try {
+            const filterData = {
+                brand: filters.brand,
+                model: filters.model,
+                year: filters.year,
+                type: filters.type,
+                transmission: filters.transmission,
+                noOfSeats: filters.seats.join(','),
+                minPrice: filters.minPrice || 0,
+                maxPrice: filters.maxPrice || 10000,
+                driverOption: filters.driverOption
+            };
 
-    const handleSeatClick = (seat) => {
-        if (selectedSeats.includes(seat)) {
-        setSelectedSeats(selectedSeats.filter((s) => s !== seat));
-        } else {
-        setSelectedSeats([...selectedSeats, seat]);
+            const response = await fetch('http://localhost:5000/api/cars/filter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(filterData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to filter cars');
+            }
+
+            const filteredCars = await response.json();
+            onFilter(filteredCars);
+        } catch (error) {
+            console.error('Error filtering cars:', error);
+            setError(error.message || 'Failed to filter cars. Please try again.');
+        } finally {
+            setIsLoading(false);
         }
     };
-      
-      
-
-    const handleBrandChange = (event) => {
-        const brand = event.target.value;
-        setSelectedBrand(brand);
-        setSelectedModel('');
-        setFilteredModels(models[brand] || []);
-    }
-
-    const handleModelChange = (event) => {
-        const model = event.target.value;
-        setSelectedModel(model);
-    }
-
-    const handleYearChange = (event) => {
-        const year = event.target.value;
-        setSelectedYear(year);
-    }
-
-    const handleTypeChange = (event) => {
-        const type = event.target.value;
-        setSelectedType(type);
-    }
-
-    const handleFilter = () => {
-        // Implement filter logic here based on selectedBrand, selectedModel, selectedYear, and selectedType
-        console.log('Filter applied:', { selectedBrand, selectedModel, selectedYear, selectedType });
-    }
 
     const handleReset = () => {
-        setSelectedBrand('');
-        setSelectedModel('');
-        setSelectedYear('');
-        setSelectedType('');
-        setFilteredModels([]);
-    }
-    const handleSearch = (event) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filteredBrands = brands.filter(brand => brand.toLowerCase().includes(searchTerm));
-        setFilteredModels(filteredBrands);
-    }
-
-    const handleModelSearch = (event) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filteredModels = models[selectedBrand].filter(model => model.toLowerCase().includes(searchTerm));
-        setFilteredModels(filteredModels);
-    }
-
-    const handleYearSearch = (event) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filteredYears = years.filter(year => year.toLowerCase().includes(searchTerm));
-        setFilteredModels(filteredYears);
-    }
-    const handleTypeSearch = (event) => {
-        const searchTerm = event.target.value.toLowerCase();
-        const filteredTypes = types.filter(type => type.toLowerCase().includes(searchTerm));
-        setFilteredModels(filteredTypes);
-    }
-
-    const handleBrandClick = (brand) => {
-        setSelectedBrand(brand);
-        setFilteredModels(models[brand] || []);
-    }
-
-    const handleModelClick = (model) => {
-        setSelectedModel(model);
-    }
-
-    const handleYearClick = (year) => {
-        setSelectedYear(year);
-    }
-
-    const handleTypeClick = (type) => {
-        setSelectedType(type);
-    }
-
-    const handleBrandKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            const brand = event.target.value;
-            setSelectedBrand(brand);
-            setFilteredModels(models[brand] || []);
-        }
-    }
-
-    const handleModelKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            const model = event.target.value;
-            setSelectedModel(model);
-        }
-    }
-
-    const handleYearKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            const year = event.target.value;
-            setSelectedYear(year);
-        }
-    }
-
-    const handleTypeKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            const type = event.target.value;
-            setSelectedType(type);
-        }
-    }
-
+        setFilters({
+            brand: '',
+            model: '',
+            year: '',
+            type: '',
+            transmission: '',
+            seats: [],
+            minPrice: '',
+            maxPrice: '',
+            driverOption: ''
+        });
+        setError(null);
+        onFilter(null);
+    };
 
     return (
         <div className="filterDiv">
             <div className="row1">
                 <div className="brand">
                     <div>Brand</div>
-                    <div>
-                        <select
-                        name="brandselect"
-                        id="brandselect"
-                        value={selectedBrand}
-                        onChange={handleBrandChange}
-                        >
+                    <select
+                        value={filters.brand}
+                        onChange={(e) => handleInputChange('brand', e.target.value)}
+                    >
                         <option value="">Select Brand</option>
                         {brands.map((brand, index) => (
-                            <option key={index} value={brand}>
-                            {brand}
-                            </option>
+                            <option key={index} value={brand}>{brand}</option>
                         ))}
-                        </select>
-                    </div>
-                    </div>
+                    </select>
+                </div>
 
-                    <div className="model">
+                <div className="model">
                     <div>Model</div>
-                    <div>
-                        <select
-                        name="modelselect"
-                        id="modelselect"
-                        value={selectedModel}
-                        onChange={handleModelChange}
-                        disabled={!selectedBrand}
-                        >
+                    <select
+                        value={filters.model}
+                        onChange={(e) => handleInputChange('model', e.target.value)}
+                        disabled={!filters.brand}
+                    >
                         <option value="">Select Model</option>
-                        {filteredModels.map((model, index) => (
-                            <option key={index} value={model}>
-                            {model}
-                            </option>
+                        {filters.brand && models[filters.brand]?.map((model, index) => (
+                            <option key={index} value={model}>{model}</option>
                         ))}
-                        </select>
-                    </div>
-                    </div>
+                    </select>
+                </div>
 
-                    <div className="year">
+                <div className="year">
                     <div>Year</div>
-                    <div>
-                        <select
-                        name="yearselect"
-                        id="yearselect"
-                        value={selectedYear}
-                        onChange={handleYearChange}
-                        >
+                    <select
+                        value={filters.year}
+                        onChange={(e) => handleInputChange('year', e.target.value)}
+                    >
                         <option value="">Select Year</option>
                         {years.map((year, index) => (
-                            <option key={index} value={year}>
-                            {year}
-                            </option>
+                            <option key={index} value={year}>{year}</option>
                         ))}
-                        </select>
-                    </div>
-                    </div>
+                    </select>
+                </div>
 
-                    <div className="type">
+                <div className="type">
                     <div>Type</div>
-                    <div>
-                        <select
-                        name="typeselect"
-                        id="typeselect"
-                        value={selectedType}
-                        onChange={handleTypeChange}
-                        >
+                    <select
+                        value={filters.type}
+                        onChange={(e) => handleInputChange('type', e.target.value)}
+                    >
                         <option value="">Select Type</option>
                         {types.map((type, index) => (
-                            <option key={index} value={type}>
-                            {type}
-                            </option>
+                            <option key={index} value={type}>{type}</option>
                         ))}
-                        </select>
-                    </div>
-                    </div>
-
+                    </select>
                 </div>
+            </div>
+
             <div className="row2">
                 <div className="filterDriver">
                     <div>Filter Driver</div>
-
-                        <button
-                        className={driverOption === 'with' ? 'driver-btn active' : 'driver-btn'}
-                        onClick={() => handleDriverSelection('with')}
-                        >
+                    <button
+                        className={`driver-btn ${filters.driverOption === 'with' ? 'active' : ''}`}
+                        onClick={() => handleInputChange('driverOption', filters.driverOption === 'with' ? '' : 'with')}
+                    >
                         With Driver
-                        </button>
-                        <button
-                        className={driverOption === 'without' ? 'driver-btn active' : 'driver-btn'}
-                        onClick={() => handleDriverSelection('without')}
-                        >
+                    </button>
+                    <button
+                        className={`driver-btn ${filters.driverOption === 'without' ? 'active' : ''}`}
+                        onClick={() => handleInputChange('driverOption', filters.driverOption === 'without' ? '' : 'without')}
+                    >
                         Without Driver
-                        </button>
+                    </button>
                 </div>
+
                 <div className="filterTransmission">
                     <div>Transmission</div>
                     <button
-                        className={transmissionOption === 'automatic' ? 'driver-btn active' : 'driver-btn'}
-                        onClick={() => handleTransmissionSelection('automatic')}
+                        className={`driver-btn ${filters.transmission === 'Automatic' ? 'active' : ''}`}
+                        onClick={() => handleInputChange('transmission', filters.transmission === 'Automatic' ? '' : 'Automatic')}
                     >
                         Automatic
                     </button>
                     <button
-                        className={transmissionOption === 'manual' ? 'driver-btn active' : 'driver-btn'}
-                        onClick={() => handleTransmissionSelection('manual')}
+                        className={`driver-btn ${filters.transmission === 'Manual' ? 'active' : ''}`}
+                        onClick={() => handleInputChange('transmission', filters.transmission === 'Manual' ? '' : 'Manual')}
                     >
                         Manual
                     </button>
                 </div>
-
             </div>
 
             <div className="row3">
@@ -286,38 +248,65 @@ export default function Filter(){
                     <div className="label-and-buttons">
                         <span className="label">Seats</span>
                         <div className="button-group">
-                        {seatOptions.map((seat) => (
-                            <button
-                            key={seat}
-                            className={`circle-btn ${selectedSeats.includes(seat) ? "active" : ""}`}
-                            onClick={() => handleSeatClick(seat)}
-                            >
-                            {seat}
-                            </button>
-                        ))}
+                            {seatOptions.map((seat) => (
+                                <button
+                                    key={seat}
+                                    className={`circle-btn ${filters.seats.includes(seat) ? 'active' : ''}`}
+                                    onClick={() => handleSeatToggle(seat)}
+                                >
+                                    {seat}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
-                
 
                 <div className="price">
                     <div>Price $/day</div>
-                    <input type="number" placeholder="From"/>
-                    <input type="number" placeholder="To"/>
+                    <input 
+                        type="number" 
+                        placeholder="From" 
+                        value={filters.minPrice}
+                        onChange={(e) => handleInputChange('minPrice', e.target.value)}
+                    />
+                    <input 
+                        type="number" 
+                        placeholder="To" 
+                        value={filters.maxPrice}
+                        onChange={(e) => handleInputChange('maxPrice', e.target.value)}
+                    />
                 </div>
+
                 <div className="reset">
                     <button className="resetButton" onClick={handleReset}>
                         Reset All <RiResetLeftFill className="icons"/>
                     </button>
                 </div>
+
                 <div className="search">
-                    <button className="searchButton" onClick={handleFilter}>
-                        Search   <FaArrowRightLong className="icons"/>
+                    <button 
+                        className="searchButton" 
+                        onClick={handleFilterSubmit}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Searching...' : 'Search'} 
+                        <FaArrowRightLong className="icons"/>
                     </button>
-                    
                 </div>
             </div>
-            
+
+            {error && (
+                <div className="error-message" style={{ 
+                    color: 'red', 
+                    margin: '10px 0',
+                    textAlign: 'center',
+                    padding: '10px',
+                    backgroundColor: '#ffeeee',
+                    borderRadius: '5px'
+                }}>
+                    {error}
+                </div>
+            )}
         </div>
-    )
+    );
 }

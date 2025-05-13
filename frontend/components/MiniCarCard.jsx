@@ -10,6 +10,8 @@ import { TiStarFullOutline } from "react-icons/ti";
 export default function MiniCarCard({car})
 {
     const { name, type, transmission, seater, price, rating } = car;
+    //image path is type of car but lower case
+     const imagePath = `./${type.toLowerCase()}.png`;
 
 
     return(
@@ -17,7 +19,7 @@ export default function MiniCarCard({car})
         <div className="singleCarCard" >
 
             <div className="singleCardImageContainer">
-                <img src="./nismo1.png" alt="ss"></img>
+                <img src={imagePath} alt="ss"></img>
                 <p className="carType">{type}</p>
             </div>
 
