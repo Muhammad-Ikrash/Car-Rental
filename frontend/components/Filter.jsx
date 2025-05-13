@@ -11,7 +11,6 @@ export default function Filter({ onFilter }) {
                    'Ferrari', 'Mercedes', 'Pagani', 'Bugatti', 'Kia', 
                    'Mazda', 'Nissan', 'Ford'];
 
-    // Hardcoded models (15 for each brand as you requested)
     const models = {
         BMW: ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', '2 Series', '3 Series', 
               '4 Series', '5 Series', '7 Series', '8 Series', 'Z4', 'i8'],
@@ -57,8 +56,7 @@ export default function Filter({ onFilter }) {
                'Fusion', 'EcoSport', 'Transit', 'GT', 'Thunderbird']
     };
 
-    // Other filter options
-    const years = ['2020', '2021', '2022', '2023'];
+    const years = Array.from({ length: 24 }, (_, i) => (2000 + i).toString());
     const types = ['SUV', 'Sedan', 'Truck', 'Van', 'Coupe', 'Convertible', 'Hatchback'];
     const seatOptions = [2, 4, 5, 7, 8];
 
