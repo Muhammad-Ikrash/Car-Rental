@@ -1,5 +1,22 @@
 const Task = require("../models/userModel");
 
+exports.GetDashboardStats = async (req, res) => {
+
+    try {
+
+        const stats = await Task.GetDashboardStats();
+
+        if (!stats)
+            return res.status(404).json({ message: "No stats found!" });
+
+        res.status(200).json(stats);
+
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching stats!" });
+    }
+
+}
+
 exports.GetAllUsers = async (req, res) => {
 
     try {

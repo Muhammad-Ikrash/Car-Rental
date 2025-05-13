@@ -2,6 +2,16 @@ const { sql, poolPromise } = require("../config/db");
 
 const Tasks = {
 
+    async GetDashboardStats() {
+
+        const pool = await poolPromise;
+        const result = await pool.request()
+            .execute("sp_GetDashboardStats");
+
+        return result.recordsets;
+
+    }, 
+
     async GetAllUsers() {
 
         const pool = await poolPromise;
