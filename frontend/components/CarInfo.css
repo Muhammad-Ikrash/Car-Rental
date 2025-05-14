@@ -202,3 +202,103 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+
+/* Rental Form Styles */
+.rentForm {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  max-width: 600px;
+}
+
+.rentForm h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  min-height: 80px;
+}
+
+.cost-summary {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.cost-summary p {
+  margin: 5px 0;
+}
+
+.total-cost {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #2a6496;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.submit-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.submit-btn:disabled {
+  background-color: #cccccc;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.success-message {
+  color: #4CAF50;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #f44336;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
