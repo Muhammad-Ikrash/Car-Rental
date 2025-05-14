@@ -117,9 +117,8 @@ import "./AllCardsDiv.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function AllCardsDiv({ filterCriteria }) {
+export default function AllCardsDiv({ cars, setCars }) {
     const navigate = useNavigate();
-    const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const handleCardClick = (carid) => {
@@ -136,7 +135,7 @@ export default function AllCardsDiv({ filterCriteria }) {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(filterCriteria)
+                    body: JSON.stringify({})
                 });
 
                 setCars(await response.json());
@@ -149,7 +148,7 @@ export default function AllCardsDiv({ filterCriteria }) {
         };
 
         fetchCars();
-    }, [filterCriteria]);
+    }, []);
 
     if (loading) {
         return <div>Loading cars...</div>;

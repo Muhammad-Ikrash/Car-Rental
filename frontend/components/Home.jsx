@@ -46,10 +46,10 @@ import Filter from "./Filter";
 import { useState } from "react";
 
 export default function Home() {
-    const [filterCriteria, setFilterCriteria] = useState({});
+    const [cars, setCars] = useState([]);
 
-    const handleFilter = (criteria) => {
-        setFilterCriteria(criteria);
+    const handleFilter = (filteredCars) => {
+        setCars(filteredCars || {});
     };
 
     return (
@@ -61,15 +61,15 @@ export default function Home() {
             </div>
             <Filter onFilter={handleFilter} />
             <div className="topPicksText">
-                {filterCriteria ? 'Filter Results' : 'Top Picks for You'}
+                {/*filterCriteria ? 'Filter Results' : 'Top Picks for You'*/}
             </div>
             <div className="topPicksObjective">
-                {filterCriteria 
+                {/*filterCriteria 
                     ? 'Cars matching your criteria' 
                     : 'Experience the epitome of amazing journey with our top picks.'
-                }
+                */}
             </div>
-            <AllCardsDiv filterCriteria={filterCriteria} />
+            <AllCardsDiv cars={cars} setCars={setCars} />
         </div>
     );
 }

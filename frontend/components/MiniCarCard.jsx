@@ -78,25 +78,24 @@ export default function MiniCarCard({ car }) {
         features
     } = car;
 
-    console.log("Car details:", {
-        name,
-        category,
-        transmission,
-        seater, 
-        price,
-        brand,
-        id,
-        image_path,
-        year,
-        color,
-        fuel_type,
-        features
-    });
+    // console.log("Car details:", {
+    //     name,
+    //     category,
+    //     transmission,
+    //     seater, 
+    //     price,
+    //     brand,
+    //     id,
+    //     image_path,
+    //     year,
+    //     color,
+    //     fuel_type,
+    //     features
+    // });
 
 
     //const ratings = {4.3, 4.1, 4.6, 4.4, 4.5, 4.2, 4.7, 4.8}; fix this
-    const ratings = [4.3, 4.1, 4.6, 4.4, 4.5, 4.2, 4.7, 4.8]; // Example ratings array
-    const rating = ratings[Math.floor(Math.random() * ratings.length)];
+    
     // Use the actual image path from API if available, otherwise fallback to category
     const imagePath = `./${category.toLowerCase()}.png`;
 
@@ -120,8 +119,9 @@ export default function MiniCarCard({ car }) {
                     <GiCarSeat className="icons" /> {seater} seats
                 </div>
 
-                <div className="carRating">
-                    <FaRegStar className="icons" /> {rating} <TiStarFullOutline className="icons" />
+                <div className="carRating" style={{ color: "black" }}>
+                    {/* <FaRegStar className="icons" /> 4.5  */}
+                    <TiStarFullOutline className="icons" /> 4.5
                 </div>
             </div>
 

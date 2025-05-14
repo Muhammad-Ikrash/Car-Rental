@@ -9,7 +9,8 @@ export default function Filter({ onFilter }) {
     // Hardcoded brands (exactly as you requested)
     const brands = ['BMW', 'Toyota', 'Suzuki', 'Honda', 'Lamborghini', 
                    'Ferrari', 'Mercedes', 'Pagani', 'Bugatti', 'Kia', 
-                   'Mazda', 'Nissan', 'Ford'];
+                   'Mazda', 'Nissan', 'Ford', 'Audi', 'Chevrolet',
+                   'Hyundai', 'Porsche', 'Suzuki',];
 
     const models = {
         BMW: ['X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'X7', '2 Series', '3 Series', 
@@ -53,7 +54,26 @@ export default function Filter({ onFilter }) {
                  'Frontier', 'Titan', 'Leaf', 'Ariya'],
         Ford: ['F-150', 'Mustang', 'Explorer', 'Escape', 'Edge',  
                'Bronco', 'Ranger', 'Expedition', 'Maverick', 'Focus', 
-               'Fusion', 'EcoSport', 'Transit', 'GT', 'Thunderbird']
+               'Fusion', 'EcoSport', 'Transit', 'GT', 'Thunderbird'],
+
+        Audi: ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7',
+               'Q8', 'TT', 'R8', 'e-tron', 'Q4 e-tron', 'A1'],
+        Chevrolet: ['Silverado', 'Malibu', 'Equinox', 'Traverse', 
+                    'Tahoe', 'Suburban', 'Camaro', 'Corvette', 
+                    'Blazer', 'Trailblazer', 'Sonic', 'Impala', 
+                    'Cruze', 'Spark', 'Bolt EV'],
+        Hyundai: ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona',
+                    'Santa Cruz', 'Palisade', 'Ioniq 5', 'Veloster', 
+                    'Accent', 'Genesis', 'Azera', 'Tucson N Line', 
+                    'Sonata N Line', 'Kona N'],
+        Porsche: ['911', 'Cayenne', 'Macan', 'Panamera', 'Taycan',
+                    'Boxster', 'Cayman', '918 Spyder', 'Carrera GT', 
+                    'Porsche 718', 'Porsche 944', 'Porsche 928', 
+                    'Porsche Macan EV', 'Porsche Cayenne Coupe', 
+                    'Porsche Panamera Sport Turismo'],
+        Suzuki: ['Swift', 'Baleno', 'Vitara', 'Jimny', 'Celerio',
+                  'S-Cross', 'Ertiga', 'Alto', 'Wagon R', 'Brezza', 
+                  'Ignis', 'XL6', 'Ciaz', 'Kizashi', 'Grand Vitara']
     };
 
     const years = Array.from({ length: 24 }, (_, i) => (2000 + i).toString());
@@ -111,12 +131,22 @@ export default function Filter({ onFilter }) {
                 driverOption: filters.driverOption
             };
 
+
+            //make new array filteredArray which only contains the above variables that are not null
+
+            const filteredArray = Object.entries(filterData).reduce((acc, [key, value]) => {
+                if (value !== '' && value !== 0 && value !== '0' && value !== '10000') {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {});
+
             const response = await fetch('http://localhost:5000/api/cars/filter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(filterData)
+                body: JSON.stringify(filteredArray)
             });
 
             if (!response.ok) {
@@ -126,6 +156,8 @@ export default function Filter({ onFilter }) {
 
             const filteredCars = await response.json();
             onFilter(filteredCars);
+            //console.log('Filteredssss Cars:', filteredCars);
+
         } catch (error) {
             console.error('Error filtering cars:', error);
             setError(error.message || 'Failed to filter cars. Please try again.');
