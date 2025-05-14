@@ -78,21 +78,6 @@ export default function MiniCarCard({ car }) {
         features
     } = car;
 
-    // console.log("Car details:", {
-    //     name,
-    //     category,
-    //     transmission,
-    //     seater, 
-    //     price,
-    //     brand,
-    //     id,
-    //     image_path,
-    //     year,
-    //     color,
-    //     fuel_type,
-    //     features
-    // });
-
 
     //const ratings = {4.3, 4.1, 4.6, 4.4, 4.5, 4.2, 4.7, 4.8}; fix this
     

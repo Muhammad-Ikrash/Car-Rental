@@ -114,12 +114,12 @@ return (
   <div className="navbar">
     <div className="menu">
       <div className="navbarLogo">
-        <img src="./logoSlim3.png" alt="logo"></img>
+        <img src="/logoSlim3.png" alt="logo"></img>
       </div>
       <div>Rentals</div>
       <div>Dashboard</div>
-      <div>Active Bookings</div>
-      <div>History</div>
+      <div style={{visibility:"hidden"}}>Active Bookings</div>
+      <div style={{visibility:"hidden"}}>History</div>
     </div>
 
     <div className="search">
@@ -136,7 +136,7 @@ return (
         </button>
         {showDropdown && (
           <div className="dropdownMenu">
-            <button onClick={handleProfile}>Profile</button>
+            
             <button onClick={handleLogout}>Logout</button>
           </div>
         )}

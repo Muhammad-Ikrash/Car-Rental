@@ -163,7 +163,7 @@ export default function AllCardsDiv({ cars, setCars }) {
             {cars.map((car, index) => (
                 <div className="card"
                     key={index} 
-                    onClick={() => handleCardClick(car.id)}
+                    onClick={() => handleCardClick(car.car_id)}
                     style={{ cursor: 'pointer' }}
                 >
                     <MiniCarCard car={car} />
