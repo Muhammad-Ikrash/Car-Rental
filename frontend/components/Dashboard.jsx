@@ -6,15 +6,13 @@ import './Dashboard.css'
 import ScrollTop from './ScrollTop'
 import CarInfoAll from './CarInfoAll'
 
-export default function Dashoard(){
+export default function Dashboard(){
     const { carid } = useParams();
-    // const [car, setCar] = useState([])
-    console.log(carid);
 
     return (
         <div className="dashboard">
             <Navbar />
-            <CarInfoAll carid={carid}/>
+            <CarInfoAll id={carid}/>
         </div>
     )
 } 

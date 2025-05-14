@@ -75,13 +75,13 @@
 // }
 
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./CarInfo.css";
 
-export default function CarInfoAll({ carid }) {
+export default function CarInfoAll({ id }) {
   const [showForm, setShowForm] = useState(false);
   const [carDetails, setCarDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log("Cardid :", carid)
 
   const handleRentClick = () => {
     setShowForm(true);
@@ -90,9 +90,9 @@ export default function CarInfoAll({ carid }) {
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/cars/car/${carid}`);
+        const response = await fetch(`http://localhost:5000/api/cars/car/${id}`);
         const data = await response.json();
-        console.log(data);
+        
         if (data && data.length > 0) {
           setCarDetails(data[0]); // Assuming API response is an array with one car object
         }
@@ -104,7 +104,7 @@ export default function CarInfoAll({ carid }) {
     };
 
     fetchCarDetails();
-  }, [carid]);
+  }, []);
 
   if (loading) {
     return <div>Loading car details...</div>;
@@ -132,18 +132,18 @@ export default function CarInfoAll({ carid }) {
       {/* Image + overlay */}
       <div className="oneDiv">
         <div className="carImageContainer">
-          <img src={'./homeImage2.jpg'} alt="Car" className="carImage" />
+          <img src={`./${carDetails.category.toLowerCase()}.png`} alt="Car" className="carImage" />
           <div className="carOverlay">
-            <div className="infos"> {model} </div>
-            <div className="infos"> {year}</div>
-            <div className="infos"> {mileage} driven</div>
-            <div className="infos"> {seats} Seater</div>
-            <div className="infos"> Fuel Type: {fuel_type}</div>
+            <div className="infos"> {carDetails.model} </div>
+            <div className="infos"> {carDetails.year}</div>
+            <div className="infos"> {carDetails.mileage} driven</div>
+            <div className="infos"> {carDetails.seats} Seater</div>
+            <div className="infos"> Fuel Type: {carDetails.fuel_type}</div>
             <div className="infos"> Top Speed: {topSpeed} km/h</div>
             <div className="infos"> ⭐ {rating} / 5</div>
-            <div className="infos"> ${price}/hour </div>
-            <div className="infos"> {car_status} </div>
-            <div className="infos"> {partnerCompany} </div>
+            <div className="infos"> ${carDetails.price}/hour </div>
+            <div className="infos"> {carDetails.car_status} </div>
+            <div className="infos"> {carDetails.partnerCompany} </div>
           </div>
         </div>
 
