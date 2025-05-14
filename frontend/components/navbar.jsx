@@ -136,7 +136,7 @@ return (
         </button>
         {showDropdown && (
           <div className="dropdownMenu">
-            <button onClick={handleProfile}>Profile</button>
+            
             <button onClick={handleLogout}>Logout</button>
           </div>
         )}

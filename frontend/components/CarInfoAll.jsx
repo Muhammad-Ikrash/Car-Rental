@@ -111,39 +111,50 @@ export default function CarInfoAll({ id }) {
   }
 
   const { 
-    model, 
-    year, 
-    mileage, 
+    Brand:brand,
+    model: name,
+    category,
+    year,
+    odometer_reading,
     no_seats: seats, 
     fuel_type, 
     features, 
     price_per_hour: price, 
     image_path: image, 
     car_status, 
-    partner_company: partnerCompany 
+    partner_company: partnerCompany ,
+    
   } = carDetails;
 
 
-  const topSpeed = 300; // Example top speed, can be set to some value or fetched from API
+
+
+
+
   const rating = 4.8; // Example rating, can be set to some value or fetched from API
+
+  console.log(carDetails.category.toLowerCase());
+
+  
+
 
   return (
     <div className="carInfo">
       {/* Image + overlay */}
       <div className="oneDiv">
         <div className="carImageContainer">
-          <img src={`./${carDetails.category.toLowerCase()}.png`} alt="Car" className="carImage" />
+
+          <img src={`/${carDetails.category.toLowerCase()}.png`} alt="Car" className="carImage"/>
           <div className="carOverlay">
             <div className="infos"> {carDetails.model} </div>
             <div className="infos"> {carDetails.year}</div>
-            <div className="infos"> {carDetails.mileage} driven</div>
-            <div className="infos"> {carDetails.seats} Seater</div>
+            <div className="infos"> {carDetails.odometer_reading} driven</div>
+            <div className="infos"> {carDetails.no_seats} Seater</div>
             <div className="infos"> Fuel Type: {carDetails.fuel_type}</div>
-            <div className="infos"> Top Speed: {topSpeed} km/h</div>
             <div className="infos"> ⭐ {rating} / 5</div>
-            <div className="infos"> ${carDetails.price}/hour </div>
+            <div className="infos"> ${carDetails.price_per_hour}/hour </div>
             <div className="infos"> {carDetails.car_status} </div>
-            <div className="infos"> {carDetails.partnerCompany} </div>
+            <div className="infos"> {carDetails.partner_company} </div>
           </div>
         </div>
 

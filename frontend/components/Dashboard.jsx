@@ -13,6 +13,7 @@ export default function Dashboard(){
         <div className="dashboard">
             <Navbar />
             <CarInfoAll id={carid}/>
+            <Footer/>
         </div>
     )
 } 
