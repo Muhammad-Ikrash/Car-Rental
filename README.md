@@ -1,4 +1,4 @@
-````markdown
+
 # Car Rental Management System
 
 A modern and interactive **Car Rental Management System** web application built with React and SQL backend stored procedures.  
@@ -85,5 +85,3 @@ Open [http://localhost:3000](http://localhost:3000) to view in your browser.
 * React documentation
 * SQL Server stored procedures best practices
 * Open source UI inspiration
-
-```
